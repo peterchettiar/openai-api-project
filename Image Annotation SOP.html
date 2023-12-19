@@ -1,0 +1,130 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            .table-container {
+                margin-bottom: 50px;  /* Adjust the gap between tables */
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 50%;
+                margin: 20px;
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 20px;
+                text-align: left;
+            }
+            h2 {
+                color: blue;
+            }
+
+            body { background-color: #e0e0e0; }
+        </style>
+    </head>
+    <body>
+        <h2>Responsibilities and Governance</h2>
+            <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Title</th>
+      <th>Purpose</th>
+      <th>Scope</th>
+      <th>Image Annotator</th>
+      <th>Quality Assurance</th>
+      <th>Project Manager</th>
+      <th>Version</th>
+      <th>Date</th>
+      <th>Changes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Image Annotation Procedure for Cars and Trees</td>
+      <td>To provide clear instructions for annotating cars and trees in images, while excluding taxis from the car annotations.</td>
+      <td>This SOP applies to all image annotators tasked with labeling visual data for machine learning purposes.</td>
+      <td>Responsible for accurately annotating cars and trees in images according to this SOP.</td>
+      <td>Responsible for reviewing annotated images to ensure quality and adherence to SOP.</td>
+      <td>Responsible for providing clear guidelines and resolving any discrepancies in the annotation process.</td>
+      <td>1.0</td>
+      <td>YYYY-MM-DD</td>
+      <td>Initial creation of the SOP for image annotation of cars and trees, excluding taxis.</td>
+    </tr>
+  </tbody>
+</table>
+        <h2>Instructions and Guidelines</h2>
+            <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Step_Number</th>
+      <th>Description</th>
+      <th>Instructions</th>
+      <th>Image_Example</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Open the image annotation tool</td>
+      <td>Launch the designated software used for image annotation on your computer.</td>
+      <td>open_annotation_tool.jpg</td>
+      <td><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Pzwaj2iF9vX70guDVIDpMNlx/user-przJTvyPtKSAMFVgep6sMi8C/img-vaqlGikKgYjzagwhoutJqHOw.png?st=2023-12-19T10%3A37%3A27Z&se=2023-12-19T12%3A37%3A27Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-19T08%3A57%3A42Z&ske=2023-12-20T08%3A57%3A42Z&sks=b&skv=2021-08-06&sig=dH7eoOZh1/h12kNcAqC79%2BOsZNvdLHzSHnkgzWpqtQU%3D" width="200" ></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Load the image</td>
+      <td>Import the image that needs to be annotated into the annotation tool.</td>
+      <td>load_image.jpg</td>
+      <td><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Pzwaj2iF9vX70guDVIDpMNlx/user-przJTvyPtKSAMFVgep6sMi8C/img-yeDUrM6zk7Y2oyHwlviQCR0b.png?st=2023-12-19T10%3A37%3A44Z&se=2023-12-19T12%3A37%3A44Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-19T01%3A06%3A29Z&ske=2023-12-20T01%3A06%3A29Z&sks=b&skv=2021-08-06&sig=2msc3iR/LDCAIsMsMTNhDiBKuWDOj/Uz92laWs8BfJA%3D" width="200" ></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Identify cars and trees</td>
+      <td>Carefully examine the image to locate all cars and trees. Remember not to include taxis in the car annotations.</td>
+      <td>identify_cars_trees.jpg</td>
+      <td><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Pzwaj2iF9vX70guDVIDpMNlx/user-przJTvyPtKSAMFVgep6sMi8C/img-4VTfgY60w9BdRKM1if7m4TE8.png?st=2023-12-19T10%3A37%3A59Z&se=2023-12-19T12%3A37%3A59Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-19T01%3A08%3A42Z&ske=2023-12-20T01%3A08%3A42Z&sks=b&skv=2021-08-06&sig=K58DZR9wwNaofErXSyLNA550ujkAuHchUX0n3CQxMjE%3D" width="200" ></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Annotate cars</td>
+      <td>Use the 'Car' label to draw bounding boxes around each car, ensuring the entire vehicle is within the box. Skip any vehicles that are taxis.</td>
+      <td>annotate_cars.jpg</td>
+      <td><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Pzwaj2iF9vX70guDVIDpMNlx/user-przJTvyPtKSAMFVgep6sMi8C/img-OhYwcAAGcLUbgaP8fH079SK9.png?st=2023-12-19T10%3A38%3A15Z&se=2023-12-19T12%3A38%3A15Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-19T01%3A07%3A54Z&ske=2023-12-20T01%3A07%3A54Z&sks=b&skv=2021-08-06&sig=MZGYFVqqlaCvby6ODHTp4its7BjjwoixzgBd/jaLDII%3D" width="200" ></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Annotate trees</td>
+      <td>Use the 'Tree' label to draw bounding boxes around each tree, making sure to include the full canopy and trunk within the box.</td>
+      <td>annotate_trees.jpg</td>
+      <td><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Pzwaj2iF9vX70guDVIDpMNlx/user-przJTvyPtKSAMFVgep6sMi8C/img-RfylaMiB4nH7QeQu7RbZGFq3.png?st=2023-12-19T10%3A38%3A32Z&se=2023-12-19T12%3A38%3A32Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-19T01%3A07%3A57Z&ske=2023-12-20T01%3A07%3A57Z&sks=b&skv=2021-08-06&sig=NlaRa07l/Daxc4lWLOMUX3vOAxKIWdyfUlotYJ8U1JI%3D" width="200" ></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Review annotations</td>
+      <td>Double-check all annotations for accuracy and completeness. Ensure no taxis have been mistakenly labeled as cars.</td>
+      <td>review_annotations.jpg</td>
+      <td><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Pzwaj2iF9vX70guDVIDpMNlx/user-przJTvyPtKSAMFVgep6sMi8C/img-anMAQbj7MBCIwBg7jpcBAwT4.png?st=2023-12-19T10%3A38%3A49Z&se=2023-12-19T12%3A38%3A49Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-19T01%3A07%3A40Z&ske=2023-12-20T01%3A07%3A40Z&sks=b&skv=2021-08-06&sig=TP%2BK5FLqMV%2BA57XbdXR/Xa8lSc%2BG/EwIgG%2BR/NVzbBI%3D" width="200" ></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Save annotations</td>
+      <td>Save the annotated image in the required format as specified by the project guidelines.</td>
+      <td>save_annotations.jpg</td>
+      <td><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Pzwaj2iF9vX70guDVIDpMNlx/user-przJTvyPtKSAMFVgep6sMi8C/img-WBtqG3DYPSHzocP7XOhjYoXX.png?st=2023-12-19T10%3A39%3A06Z&se=2023-12-19T12%3A39%3A06Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-19T01%3A12%3A54Z&ske=2023-12-20T01%3A12%3A54Z&sks=b&skv=2021-08-06&sig=YJ7XRNFQmtY20S8z4%2BVCpydrLaOivccxLBWsxK9/zXU%3D" width="200" ></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Submit annotated image</td>
+      <td>Upload the annotated image to the designated repository or send it to the supervisor for review.</td>
+      <td>submit_annotated_image.jpg</td>
+      <td><img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Pzwaj2iF9vX70guDVIDpMNlx/user-przJTvyPtKSAMFVgep6sMi8C/img-6Lbq2EgsRC1GUE5qS9KgOYoc.png?st=2023-12-19T10%3A39%3A25Z&se=2023-12-19T12%3A39%3A25Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-19T01%3A09%3A28Z&ske=2023-12-20T01%3A09%3A28Z&sks=b&skv=2021-08-06&sig=nmLRTIxn4Sio400jtZPGBrYJulif/MNBFWq3YO1XeFA%3D" width="200" ></td>
+    </tr>
+  </tbody>
+</table>
+        </div>
+    </body>
+    </html>
+    
