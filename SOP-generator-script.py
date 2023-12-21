@@ -6,6 +6,7 @@ import time
 from pandas import json_normalize
 from tqdm import tqdm
 from pprint import pprint
+import argparse
 
 tqdm.pandas()
 
@@ -29,19 +30,21 @@ def NamingCovention():
 
 
 def GetUserInput():
-    objective = input("What is the objective or purpose of the guideline? ")
+    parser = argparse.ArgumentParser(description="SOP Guideline Generator")
 
-    author = input("Who is the author? ")
-
-    audience = input("Who is the intended audience? ")
-
-    format = input("What would be your preferred format of the guideline? ")
-
-    instructions = input(
-        "Please provide necessary and additional details that are needed to complete each step. "
+    parser.add_argument(
+        "objective", type=str, help="Objective or purpose of the guideline"
+    )
+    parser.add_argument("author", type=str, help="Author of the guideline")
+    parser.add_argument("audience", type=str, help="Intended audience of the guideline")
+    parser.add_argument("format", type=str, help="Preferred format of the guideline")
+    parser.add_argument(
+        "instructions", type=str, help="Additional details for each step"
     )
 
-    return [objective, author, audience, format, instructions]
+    args = parser.parse_args()
+
+    return [args.objective, args.author, args.audience, args.format, args.instructions]
 
 
 def GetMessageMemory(NewQuestion, PreviousResponse, systemContext, client, model_id):
