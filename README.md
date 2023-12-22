@@ -15,3 +15,9 @@ Typically it would be good to start a project by first creating a virtual enviro
 ## Project Framework and description
 
 ![openai](https://github.com/peterchettiar/openai-api-project/assets/89821181/e472585b-7cbc-4c25-8765-ed440a3ad111)
+
+### Step 1: Connecting to the OpenAI Api
+
+The first thing you want to do is to create an account if you haven't done so on the OpenAI platform. As it goes with other similar platforms, you get some free credit when you open an account. Alternatively, you can purchase credits depending on your usage (the platform deploys a 'pay as you go' sort of service). 
+
+Once you've done so, you need to go [here](https://platform.openai.com/api-keys) to create your api key. Next, in your IDE (e.g. VSCode) create a `.env` file in your project directory. Make sure that you save the environment variable in this format `OPENAI_API_KEY="Your personal api key info goes here"`.
