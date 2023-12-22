@@ -29,3 +29,5 @@ So the context given to me was that ideally the goal is to create a tool that ca
 With that in mind, I had framed a series of questions for users to input, and subsequently their responses were to be used as prompts into the model. Please find the following table:
 
 ![table](https://github.com/peterchettiar/openai-api-project/assets/89821181/8a1a8395-3934-4336-aba9-7ca42c80c3d5)
+
+It should be noted that all the prompt variables except for context are conversational messages to with the model. Some would argue that all the prompts, including context, could be combined into one paragraph and fed once into the model. But there were a lot of users who mentioned that running a chat converations would lead to more objective expected outputs. Hence this approach.
