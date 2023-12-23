@@ -77,5 +77,4 @@ The same JSON Response also provides a sort of summary page, so we repeat the sa
 
 That is pretty much it. This is how the final output should look like:
 
-![Uploading Screenshot 2023-12-23 at 11.11.56 PM.png…]()
-
+![Screenshot 2023-12-23 at 11 11 56 PM](https://github.com/peterchettiar/openai-api-project/assets/89821181/3f21c3d2-4ed8-4837-ac03-cf1e6d2dd6bd)
