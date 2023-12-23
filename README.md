@@ -35,3 +35,35 @@ It should be noted that all the prompt variables except for context are conversa
 ## Step 3: Setting of variables
 
 I think the only thing worth mentioning in this section is that I had used `gpt-4-1106-preview` as the chat model of choice. Just wanted to have a feel of the difference compared to using the 3.5 version. As for the image generating model, I used the `dall-e-3` model. Figured that most of us are visual learners, so having images as examples for illustrating what the data annotators should be doing for each step of the SOP would be useful, and should be a standardised practice when setting such SOPs.
+
+## Step 4: Running the chat conversation
+
+```
+def GetMessageMemory(NewQuestion, PreviousResponse, systemContext):
+    if PreviousResponse is not None:
+        response = client.chat.completions.create(
+            model=model_input.model_id,
+            response_format={ "type": "json_object" },
+            messages=[
+                {"role": "system", "content": systemContext},
+                {"role": "user", "content": NewQuestion},
+                {"role": "assistant", "content": PreviousResponse},
+            ],
+            temperature=0,
+            seed=42
+            )
+    else:
+        response = client.chat.completions.create(
+            model=model_input.model_id,
+            response_format={ "type": "json_object" },
+            messages=[
+                {"role": "system", "content": systemContext},
+                {"role": "user", "content": NewQuestion}
+            ],
+            temperature=0,
+            seed=42
+            )
+
+    return response.choices[0].message.content
+
+```
