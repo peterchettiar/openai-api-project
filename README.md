@@ -69,3 +69,10 @@ def GetMessageMemory(NewQuestion, PreviousResponse, systemContext):
     return response.choices[0].message.content
 
 ```
+## Step 5 - 10
+
+The rest of the steps are rather straight forward. You noramlise the responses into a dataframe and add the `image_prompt` column, which is simply the concatenation of the strings in the first three columns in the procedure_steps dataframe. This image prompt would be used as input in the `dall-e-3` to generate the images needed to be used as an illustrative example to data labellers. The openai model gives you a URL to the image, so you need to convert it into a HTML page in order to display the images.
+
+The same JSON Response also provides a sort of summary page, so we repeat the same steps as we did for the procedure dataframe, and then finally combine both the html tables into one htmal page.
+
+That is pretty much it. Thanks!
