@@ -30,4 +30,8 @@ With that in mind, I had framed a series of questions for users to input, and su
 
 ![table](https://github.com/peterchettiar/openai-api-project/assets/89821181/8a1a8395-3934-4336-aba9-7ca42c80c3d5)
 
-It should be noted that all the prompt variables except for context are conversational messages to with the model. Some would argue that all the prompts, including context, could be combined into one paragraph and fed once into the model. But there were a lot of users who mentioned that running a chat converations would lead to more objective expected outputs. Hence this approach.
+It should be noted that all the prompt variables except for context are conversational messages to chat with the model. Some would argue that all the prompts, including context, could be combined into one paragraph and fed once into the model. But there were a lot of users who mentioned that running a chat converations would lead to more objective expected outputs. Hence this approach.
+
+## Step 3: Setting of variables
+
+I think the only thing worth mentioning in this section is that I had used `gpt-4-1106-preview` as the chat model of choice. Just wanted to have a feel of the difference compared to using the 3.5 version. As for the image generating model, I used the `dall-e-3` model. Figured that most of us are visual learners, so having images as examples for illustrating what the data annotators should be doing for each step of the SOP would be useful, and should be a standardised practice when setting such SOPs.
