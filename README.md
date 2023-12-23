@@ -75,4 +75,7 @@ The rest of the steps are rather straight forward. You noramlise the responses i
 
 The same JSON Response also provides a sort of summary page, so we repeat the same steps as we did for the procedure dataframe, and then finally combine both the html tables into one htmal page.
 
-That is pretty much it. Thanks!
+That is pretty much it. This is how the final output should look like:
+
+![Uploading Screenshot 2023-12-23 at 11.11.56 PM.png…]()
+
