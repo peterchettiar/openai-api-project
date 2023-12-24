@@ -180,12 +180,12 @@ def main():
     # Next we want to convert the JSON response for the summary portion into a flattened pandas dataframe
     try:
         summary = json_normalize(model_responses)
-        summary.drop(columns="SOP_Table.Procedure_Steps", inplace=True)
+        summary.drop(columns="SOP_Table.Procedure", inplace=True)
 
     except KeyError as ke:
         print(f"KeyError: {ke}. Expected Key not found in the JSON response")
         summary = json_normalize(model_responses)
-        summary.drop(columns="SOP_Table.Procedure", inplace=True)
+        summary.drop(columns="SOP_Table.Procedure_Steps", inplace=True)
 
     except Exception as e:
         print(f"An unexpected error has occured - Key not found in summary: {e}")
