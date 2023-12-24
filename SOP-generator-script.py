@@ -3,33 +3,37 @@
 import json
 import re
 import time
-from pandas import json_normalize
-from tqdm import tqdm
 from pprint import pprint
 import argparse
+import pandas as pd
+from pandas import json_normalize
+from tqdm import tqdm
 
-tqdm.pandas()
+from openai import OpenAI
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
-from openai import OpenAI
+tqdm.pandas()
 
 
-def initialize_api():
+def initialize_api() -> OpenAI:
+    """Initializing the OpenAI API object"""
     client = OpenAI()
 
     return client
 
 
-def NamingCovention():
+def naming_convention() -> str:
+    """Name of the final output HTML file"""
     name = input("What would you like to name your html file? ")
 
     return name
 
 
-def GetUserInput():
+def get_user_input() -> [str]:
+    """Gathering some inputs from users to be used as prompts"""
     parser = argparse.ArgumentParser(description="SOP Guideline Generator")
 
     parser.add_argument(
@@ -47,15 +51,22 @@ def GetUserInput():
     return [args.objective, args.author, args.audience, args.format, args.instructions]
 
 
-def GetMessageMemory(NewQuestion, PreviousResponse, systemContext, client, model_id):
-    if PreviousResponse is not None:
+def get_message_memory(
+    new_question: str,
+    previous_repsonse: str,
+    system_context: str,
+    client: OpenAI,
+    model_id: str,
+) -> dict:
+    """helper function to run chat conversations"""
+    if previous_repsonse is not None:
         response = client.chat.completions.create(
             model=model_id,
             response_format={"type": "json_object"},
             messages=[
-                {"role": "system", "content": systemContext},
-                {"role": "user", "content": NewQuestion},
-                {"role": "assistant", "content": PreviousResponse},
+                {"role": "system", "content": system_context},
+                {"role": "user", "content": new_question},
+                {"role": "assistant", "content": previous_repsonse},
             ],
             temperature=0,
             seed=42,
@@ -65,8 +76,8 @@ def GetMessageMemory(NewQuestion, PreviousResponse, systemContext, client, model
             model=model_id,
             response_format={"type": "json_object"},
             messages=[
-                {"role": "system", "content": systemContext},
-                {"role": "user", "content": NewQuestion},
+                {"role": "system", "content": system_context},
+                {"role": "user", "content": new_question},
             ],
             temperature=0,
             seed=42,
@@ -75,10 +86,13 @@ def GetMessageMemory(NewQuestion, PreviousResponse, systemContext, client, model
     return response.choices[0].message.content
 
 
-def run_chat_conversations(client, model_id, context, messages):
+def run_chat_conversations(
+    client: OpenAI, model_id: str, context: str, messages: str
+) -> dict:
+    """running the multi-step conversation"""
     last_response = None
     for user_input in tqdm(messages):
-        chat_response = GetMessageMemory(
+        chat_response = get_message_memory(
             user_input, last_response, context, client, model_id
         )
         last_response = chat_response
@@ -86,7 +100,8 @@ def run_chat_conversations(client, model_id, context, messages):
     return json.loads(last_response)
 
 
-def GetImages(image_description: str, client):
+def get_images(image_description: str, client: OpenAI) -> str:
+    """helper function to generate the images from a given prompt"""
     response = client.images.generate(
         model="dall-e-3",
         prompt=image_description,
@@ -100,7 +115,8 @@ def GetImages(image_description: str, client):
     return response.data[0].url
 
 
-def generate_images_and_update_df(df, client):
+def generate_images_and_update_df(df, client) -> pd.DataFrame:
+    """generating the images and including them into the df"""
     df["image_prompt"] = df[df.columns.to_list()[1:]].apply(
         lambda x: "Generate image where "
         + x[0]
@@ -111,16 +127,18 @@ def generate_images_and_update_df(df, client):
         axis=1,
     )
 
-    df["Example"] = df["image_prompt"].progress_apply(GetImages, client=client)
+    df["Example"] = df["image_prompt"].progress_apply(get_images, client=client)
 
     return df
 
 
-def path_to_image_html(path):
+def path_to_image_html(path: str) -> str:
+    """converting image urls into html tags"""
     return '<img src="' + path + '" width="200" >'
 
 
 def main():
+    """main function to execute the entire process of generating an SOP"""
     # Initiallizing the openai api object
     client = initialize_api()
 
@@ -128,7 +146,7 @@ def main():
     model_id = "gpt-4-1106-preview"
     model_context = "You are an expert Standard Operating Procedure (SOP) generator in a JSON table format.\n \
         Make sure that the instructions given are clear and comprehensive, good enough to generate images as well."
-    user_inputs = GetUserInput()
+    user_inputs = get_user_input()
 
     # Using the given inputs from users, we run them as a loop into the chat function - multi-conversation
     model_responses = run_chat_conversations(
@@ -139,16 +157,16 @@ def main():
 
     # Converting the JSON response for the instructions into a flattened pandas dataframe
     try:
+        df = json_normalize(model_responses, record_path=["SOP_Table", "Procedure"])
+
+    except KeyError as ke:
+        print(f"KeyError: {ke}. Expected Key not found in the JSON response")
         df = json_normalize(
             model_responses, record_path=["SOP_Table", "Procedure_Steps"]
         )
 
-    except KeyError as ke:
-        print(f"KeyError: {ke}. Expected Key not found in the JSON response")
-        df = json_normalize(model_responses, record_path=["SOP_Table", "Procedure"])
-
     except Exception as e:
-        print("An unexpected error has occured: {e}")
+        print(f"An unexpected error has occured: {e}")
 
     # Now to generate images and update the dataframe
     df = generate_images_and_update_df(df, client)
@@ -170,7 +188,7 @@ def main():
         summary.drop(columns="SOP_Table.Procedure", inplace=True)
 
     except Exception as e:
-        print("An unexpected error has occured - Key not found in summary: {e}")
+        print(f"An unexpected error has occured - Key not found in summary: {e}")
 
     # Rename summary columns and convert df to html
     summary.columns = [re.sub("^(.*\.)", "", col) for col in summary.columns]
@@ -216,7 +234,7 @@ def main():
     """
 
     # Save the merged HTML content into a new file
-    with open(f"{NamingCovention()}.html", "w") as merged_file:
+    with open(f"{naming_convention()}.html", "w", encoding="utf-8") as merged_file:
         merged_file.write(merged_html_content)
 
 
